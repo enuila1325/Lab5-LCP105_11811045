@@ -90,6 +90,7 @@ public class Principal extends javax.swing.JFrame {
         jl_Villanos = new javax.swing.JList<>();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        Eliminar_Personaje = new javax.swing.JButton();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         EscuadronMenu = new javax.swing.JMenu();
@@ -388,6 +389,13 @@ public class Principal extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel13.setText("VILLANOS");
 
+        Eliminar_Personaje.setText("Eliminar");
+        Eliminar_Personaje.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Eliminar_PersonajeMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jd_listasPersonajesLayout = new javax.swing.GroupLayout(jd_listasPersonajes.getContentPane());
         jd_listasPersonajes.getContentPane().setLayout(jd_listasPersonajesLayout);
         jd_listasPersonajesLayout.setHorizontalGroup(
@@ -400,10 +408,15 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(59, 59, 59))
             .addGroup(jd_listasPersonajesLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel13)
-                .addGap(67, 67, 67))
+                .addGroup(jd_listasPersonajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jd_listasPersonajesLayout.createSequentialGroup()
+                        .addComponent(Eliminar_Personaje, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jd_listasPersonajesLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel13)
+                        .addGap(67, 67, 67))))
         );
         jd_listasPersonajesLayout.setVerticalGroup(
             jd_listasPersonajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -416,7 +429,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jd_listasPersonajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(241, Short.MAX_VALUE))
+                .addGap(76, 76, 76)
+                .addComponent(Eliminar_Personaje, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -604,11 +619,27 @@ public class Principal extends javax.swing.JFrame {
             jl_SquadsHeroes.setModel(Hmodelo);
         }
         if (jl_SquadsVillanos.getSelectedIndex()>=0) {
+            jl_SquadsVillanos.setModel(new DefaultListModel());
             DefaultListModel vmodelo = (DefaultListModel) jl_SquadsVillanos.getModel();
             vmodelo.removeElement(jl_SquadsVillanos.getSelectedIndex());
             jl_SquadsVillanos.setModel(vmodelo);
         }
     }//GEN-LAST:event_EliminarMouseClicked
+
+    private void Eliminar_PersonajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Eliminar_PersonajeMouseClicked
+        if (jl_Heroes.getSelectedIndex()>=0) {
+            jl_Heroes.setModel(new DefaultListModel());
+            DefaultListModel hmodelo = (DefaultListModel)jl_Heroes.getModel();
+            hmodelo.removeElement(jl_Heroes.getSelectedIndex());
+            jl_Heroes.setModel(hmodelo);
+        }
+        if (jl_Villanos.getSelectedIndex()>=0) {
+            jl_Villanos.setModel(new DefaultListModel());
+            DefaultListModel vmodelo = (DefaultListModel)jl_Heroes.getModel();
+            vmodelo.removeElement(jl_Villanos.getSelectedIndex());
+            jl_Villanos.setModel(vmodelo);
+        }
+    }//GEN-LAST:event_Eliminar_PersonajeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -650,6 +681,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem Crear_Personaje;
     private javax.swing.JMenuItem Crear_Squad;
     private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Eliminar_Personaje;
     private javax.swing.JMenu EscuadronMenu;
     private javax.swing.JMenuItem Listas_Personajes;
     private javax.swing.JMenuItem Listas_Squads;

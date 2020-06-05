@@ -512,10 +512,18 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="Eliminar_Personaje" min="-2" pref="99" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -532,7 +540,9 @@
                       <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel13" alignment="3" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="241" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                  <Component id="Eliminar_Personaje" min="-2" pref="70" max="-2" attributes="0"/>
+                  <EmptySpace pref="95" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -591,6 +601,14 @@
             </Property>
             <Property name="text" type="java.lang.String" value="VILLANOS"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="Eliminar_Personaje">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Eliminar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="Eliminar_PersonajeMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
