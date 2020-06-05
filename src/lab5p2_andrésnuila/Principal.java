@@ -16,7 +16,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -37,18 +37,36 @@ public class Principal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        tf_nombrePersonaje = new javax.swing.JTextField();
+        tf_poderpersonaje = new javax.swing.JTextField();
+        tf_DebilidadPersonaje = new javax.swing.JTextField();
+        rb_HeroePersonaje = new javax.swing.JRadioButton();
+        rb_VillanoPersonaje = new javax.swing.JRadioButton();
+        cb_Squads = new javax.swing.JComboBox<>();
+        tf_fuerzaPesonaje = new javax.swing.JTextField();
+        tf_FisicaPersonaje = new javax.swing.JTextField();
+        tf_MentalPersonaje = new javax.swing.JTextField();
+        escuadrones = new javax.swing.JDialog();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        tf_NombreEscuadron = new javax.swing.JTextField();
+        tf_BaseEscuadron = new javax.swing.JTextField();
+        rb_VillanosEsc = new javax.swing.JRadioButton();
+        rb_HeroesEsc = new javax.swing.JRadioButton();
+        TipoSquad = new javax.swing.ButtonGroup();
+        tipo_personaje = new javax.swing.ButtonGroup();
+        jd_arbol = new javax.swing.JDialog();
+        jd_ListasSquads = new javax.swing.JDialog();
+        jd_listasPersonajes = new javax.swing.JDialog();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        EscuadronMenu = new javax.swing.JMenu();
+        Crear_Squad = new javax.swing.JMenuItem();
+        Arbol_Squads = new javax.swing.JMenuItem();
+        Listas_Squads = new javax.swing.JMenuItem();
+        PersonajesMenu = new javax.swing.JMenu();
+        Crear_Personaje = new javax.swing.JMenuItem();
+        Listas_Personajes = new javax.swing.JMenuItem();
 
         jLabel1.setText("Nombre");
 
@@ -66,23 +84,25 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel8.setText("Agilidad Mental");
 
-        jTextField1.setText("jTextField1");
+        tf_nombrePersonaje.setText("jTextField1");
 
-        jTextField2.setText("jTextField2");
+        tf_poderpersonaje.setText("jTextField2");
 
-        jTextField3.setText("jTextField3");
+        tf_DebilidadPersonaje.setText("jTextField3");
 
-        jRadioButton1.setText("jRadioButton1");
+        tipo_personaje.add(rb_HeroePersonaje);
+        rb_HeroePersonaje.setText("Heroe");
 
-        jRadioButton2.setText("jRadioButton2");
+        tipo_personaje.add(rb_VillanoPersonaje);
+        rb_VillanoPersonaje.setText("VIillano");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_Squads.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTextField4.setText("jTextField4");
+        tf_fuerzaPesonaje.setText("jTextField4");
 
-        jTextField5.setText("jTextField5");
+        tf_FisicaPersonaje.setText("jTextField5");
 
-        jTextField6.setText("jTextField6");
+        tf_MentalPersonaje.setText("jTextField6");
 
         javax.swing.GroupLayout personajesLayout = new javax.swing.GroupLayout(personajes.getContentPane());
         personajes.getContentPane().setLayout(personajesLayout);
@@ -104,19 +124,19 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(66, 66, 66)
                 .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                        .addComponent(jTextField2)
-                        .addComponent(jTextField3))
+                        .addComponent(tf_nombrePersonaje, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                        .addComponent(tf_poderpersonaje)
+                        .addComponent(tf_DebilidadPersonaje))
                     .addGroup(personajesLayout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(rb_HeroePersonaje)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton2))
+                        .addComponent(rb_VillanoPersonaje))
                     .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                        .addComponent(tf_MentalPersonaje, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                        .addComponent(tf_FisicaPersonaje, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tf_fuerzaPesonaje, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cb_Squads, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
         personajesLayout.setVerticalGroup(
             personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,46 +144,178 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(116, 116, 116)
                 .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_nombrePersonaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_poderpersonaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_DebilidadPersonaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(rb_HeroePersonaje)
+                    .addComponent(rb_VillanoPersonaje))
                 .addGap(18, 18, 18)
                 .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_Squads, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_fuerzaPesonaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_FisicaPersonaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_MentalPersonaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(246, Short.MAX_VALUE))
+        );
+
+        jLabel9.setText("Nombre del Escuadron");
+
+        jLabel10.setText("Base del Escuadron");
+
+        jLabel11.setText("Tipo Escuadron");
+
+        tf_NombreEscuadron.setText("jTextField7");
+
+        tf_BaseEscuadron.setText("jTextField8");
+
+        TipoSquad.add(rb_VillanosEsc);
+        rb_VillanosEsc.setText("Villanos");
+
+        TipoSquad.add(rb_HeroesEsc);
+        rb_HeroesEsc.setText("Heroes");
+
+        javax.swing.GroupLayout escuadronesLayout = new javax.swing.GroupLayout(escuadrones.getContentPane());
+        escuadrones.getContentPane().setLayout(escuadronesLayout);
+        escuadronesLayout.setHorizontalGroup(
+            escuadronesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(escuadronesLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addGroup(escuadronesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(escuadronesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(73, 73, 73)
+                .addGroup(escuadronesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(escuadronesLayout.createSequentialGroup()
+                        .addComponent(rb_VillanosEsc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rb_HeroesEsc))
+                    .addGroup(escuadronesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(tf_NombreEscuadron, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                        .addComponent(tf_BaseEscuadron)))
+                .addContainerGap(109, Short.MAX_VALUE))
+        );
+        escuadronesLayout.setVerticalGroup(
+            escuadronesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(escuadronesLayout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addGroup(escuadronesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(tf_NombreEscuadron, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(escuadronesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(tf_BaseEscuadron, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(escuadronesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(rb_VillanosEsc)
+                    .addComponent(rb_HeroesEsc))
+                .addContainerGap(471, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jd_arbolLayout = new javax.swing.GroupLayout(jd_arbol.getContentPane());
+        jd_arbol.getContentPane().setLayout(jd_arbolLayout);
+        jd_arbolLayout.setHorizontalGroup(
+            jd_arbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jd_arbolLayout.setVerticalGroup(
+            jd_arbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jd_ListasSquadsLayout = new javax.swing.GroupLayout(jd_ListasSquads.getContentPane());
+        jd_ListasSquads.getContentPane().setLayout(jd_ListasSquadsLayout);
+        jd_ListasSquadsLayout.setHorizontalGroup(
+            jd_ListasSquadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jd_ListasSquadsLayout.setVerticalGroup(
+            jd_ListasSquadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jd_listasPersonajesLayout = new javax.swing.GroupLayout(jd_listasPersonajes.getContentPane());
+        jd_listasPersonajes.getContentPane().setLayout(jd_listasPersonajesLayout);
+        jd_listasPersonajesLayout.setHorizontalGroup(
+            jd_listasPersonajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jd_listasPersonajesLayout.setVerticalGroup(
+            jd_listasPersonajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("ESCUADRONES");
-        jMenuBar1.add(jMenu1);
+        EscuadronMenu.setText("ESCUADRONES");
 
-        jMenu2.setText("PERSONAJES");
-        jMenuBar1.add(jMenu2);
+        Crear_Squad.setText("Crear");
+        Crear_Squad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Crear_SquadActionPerformed(evt);
+            }
+        });
+        EscuadronMenu.add(Crear_Squad);
+
+        Arbol_Squads.setText("Arbol de Squads");
+        Arbol_Squads.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Arbol_SquadsActionPerformed(evt);
+            }
+        });
+        EscuadronMenu.add(Arbol_Squads);
+
+        Listas_Squads.setText("Listas");
+        Listas_Squads.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Listas_SquadsActionPerformed(evt);
+            }
+        });
+        EscuadronMenu.add(Listas_Squads);
+
+        jMenuBar1.add(EscuadronMenu);
+
+        PersonajesMenu.setText("PERSONAJES");
+
+        Crear_Personaje.setText("Crear");
+        Crear_Personaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Crear_PersonajeActionPerformed(evt);
+            }
+        });
+        PersonajesMenu.add(Crear_Personaje);
+
+        Listas_Personajes.setText("Listas");
+        Listas_Personajes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Listas_PersonajesActionPerformed(evt);
+            }
+        });
+        PersonajesMenu.add(Listas_Personajes);
+
+        jMenuBar1.add(PersonajesMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -180,6 +332,41 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Crear_PersonajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Crear_PersonajeActionPerformed
+        personajes.setModal(true);
+        personajes.pack();
+        personajes.setLocationRelativeTo(this);
+        personajes.setVisible(true);
+    }//GEN-LAST:event_Crear_PersonajeActionPerformed
+
+    private void Crear_SquadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Crear_SquadActionPerformed
+        escuadrones.setModal(true);
+        escuadrones.pack();
+        escuadrones.setLocationRelativeTo(this);
+        escuadrones.setVisible(true);
+    }//GEN-LAST:event_Crear_SquadActionPerformed
+
+    private void Arbol_SquadsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Arbol_SquadsActionPerformed
+       jd_arbol.setModal(true);
+       jd_arbol.pack();
+       jd_arbol.setLocationRelativeTo(this);
+       jd_arbol.setVisible(true);
+    }//GEN-LAST:event_Arbol_SquadsActionPerformed
+
+    private void Listas_SquadsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Listas_SquadsActionPerformed
+        jd_ListasSquads.setModal(true);
+        jd_ListasSquads.pack();
+        jd_ListasSquads.setLocationRelativeTo(this);
+        jd_ListasSquads.setVisible(true);
+    }//GEN-LAST:event_Listas_SquadsActionPerformed
+
+    private void Listas_PersonajesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Listas_PersonajesActionPerformed
+        jd_listasPersonajes.setModal(true);
+        jd_listasPersonajes.pack();
+        jd_listasPersonajes.setLocationRelativeTo(this);
+        jd_listasPersonajes.setVisible(true);
+    }//GEN-LAST:event_Listas_PersonajesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,8 +404,19 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JMenuItem Arbol_Squads;
+    private javax.swing.JMenuItem Crear_Personaje;
+    private javax.swing.JMenuItem Crear_Squad;
+    private javax.swing.JMenu EscuadronMenu;
+    private javax.swing.JMenuItem Listas_Personajes;
+    private javax.swing.JMenuItem Listas_Squads;
+    private javax.swing.JMenu PersonajesMenu;
+    private javax.swing.ButtonGroup TipoSquad;
+    private javax.swing.JComboBox<String> cb_Squads;
+    private javax.swing.JDialog escuadrones;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -226,17 +424,24 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JDialog jd_ListasSquads;
+    private javax.swing.JDialog jd_arbol;
+    private javax.swing.JDialog jd_listasPersonajes;
     private javax.swing.JDialog personajes;
+    private javax.swing.JRadioButton rb_HeroePersonaje;
+    private javax.swing.JRadioButton rb_HeroesEsc;
+    private javax.swing.JRadioButton rb_VillanoPersonaje;
+    private javax.swing.JRadioButton rb_VillanosEsc;
+    private javax.swing.JTextField tf_BaseEscuadron;
+    private javax.swing.JTextField tf_DebilidadPersonaje;
+    private javax.swing.JTextField tf_FisicaPersonaje;
+    private javax.swing.JTextField tf_MentalPersonaje;
+    private javax.swing.JTextField tf_NombreEscuadron;
+    private javax.swing.JTextField tf_fuerzaPesonaje;
+    private javax.swing.JTextField tf_nombrePersonaje;
+    private javax.swing.JTextField tf_poderpersonaje;
+    private javax.swing.ButtonGroup tipo_personaje;
     // End of variables declaration//GEN-END:variables
 }
