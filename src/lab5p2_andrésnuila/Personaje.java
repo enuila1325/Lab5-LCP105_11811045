@@ -2,13 +2,23 @@ package lab5p2_andrésnuila;
 
 public class Personaje {
 
-    private String nombre, poder, debilidad, escuadron;
+    private String nombre, poder, debilidad;
     private int fuerza, agiFisica, agiMental;
+    private Escuadron escuadron;
 
     public Personaje() {
     }
 
-    public Personaje(String nombre, String poder, String debilidad, String escuadron, int fuerza, int agiFisica, int agiMental) {
+    public Personaje(String nombre, String poder, String debilidad, int fuerza, int agiFisica, int agiMental) {
+        this.nombre = nombre;
+        this.poder = poder;
+        this.debilidad = debilidad;
+        this.fuerza = fuerza;
+        this.agiFisica = agiFisica;
+        this.agiMental = agiMental;
+    }
+
+    public Personaje(String nombre, String poder, String debilidad, Escuadron escuadron, int fuerza, int agiFisica, int agiMental) {
         this.nombre = nombre;
         this.poder = poder;
         this.debilidad = debilidad;
@@ -42,11 +52,11 @@ public class Personaje {
         this.debilidad = debilidad;
     }
 
-    public String getEscuadron() {
+    public Escuadron getEscuadron() {
         return escuadron;
     }
 
-    public void setEscuadron(String escuadron) {
+    public void setEscuadron(Escuadron escuadron) {
         this.escuadron = escuadron;
     }
 
