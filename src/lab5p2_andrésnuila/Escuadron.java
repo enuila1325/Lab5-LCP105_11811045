@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class Escuadron {
 
-    private String nombre, base, lider, tipo;
+    private String nombre, base, tipo;
     private ArrayList<Personaje> miembros = new ArrayList();
+    private Personaje lider;
 
     public Escuadron() {
     }
@@ -15,9 +16,8 @@ public class Escuadron {
         this.base = base;
         this.tipo = tipo;
     }
-    
 
-    public Escuadron(String nombre, String base, String lider, String tipo) {
+    public Escuadron(String nombre, String base, Personaje lider, String tipo) {
         this.nombre = nombre;
         this.base = base;
         this.lider = lider;
@@ -40,11 +40,11 @@ public class Escuadron {
         this.base = base;
     }
 
-    public String getLider() {
+    public Personaje getLider() {
         return lider;
     }
 
-    public void setLider(String lider) {
+    public void setLider(Personaje lider) {
         this.lider = lider;
     }
 
@@ -66,8 +66,7 @@ public class Escuadron {
 
     @Override
     public String toString() {
-        return  "nombre=" + nombre + ", base=" + base;
+        return "nombre=" + nombre + ", base=" + base;
     }
 
-    
 }
