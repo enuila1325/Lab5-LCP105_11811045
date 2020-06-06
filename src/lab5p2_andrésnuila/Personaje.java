@@ -2,11 +2,20 @@ package lab5p2_andrésnuila;
 
 public class Personaje {
 
-    private String nombre, poder, debilidad;
+    private String nombre, poder, debilidad, tipo;
     private int fuerza, agiFisica, agiMental;
     private Escuadron escuadron;
 
     public Personaje() {
+    }
+
+    public Personaje(String nombre, String poder, String debilidad, int fuerza, int agiFisica, int agiMental, String tipo) {
+        this.nombre = nombre;
+        this.poder = poder;
+        this.debilidad = debilidad;
+        this.fuerza = fuerza;
+        this.agiFisica = agiFisica;
+        this.agiMental = agiMental;
     }
 
     public Personaje(String nombre, String poder, String debilidad, int fuerza, int agiFisica, int agiMental) {
@@ -18,7 +27,17 @@ public class Personaje {
         this.agiMental = agiMental;
     }
 
-    public Personaje(String nombre, String poder, String debilidad, Escuadron escuadron, int fuerza, int agiFisica, int agiMental) {
+    public Personaje(String nombre, String poder, String debilidad, int fuerza, int agiFisica, int agiMental, Escuadron escuadron) {
+        this.nombre = nombre;
+        this.poder = poder;
+        this.debilidad = debilidad;
+        this.fuerza = fuerza;
+        this.agiFisica = agiFisica;
+        this.agiMental = agiMental;
+        this.escuadron = escuadron;
+    }
+
+    public Personaje(String nombre, String poder, String debilidad, Escuadron escuadron, int fuerza, int agiFisica, int agiMental, String tipo) {
         this.nombre = nombre;
         this.poder = poder;
         this.debilidad = debilidad;
@@ -86,6 +105,7 @@ public class Personaje {
 
     @Override
     public String toString() {
+
         return "nombre=" + nombre + ", poder=" + poder;
     }
 

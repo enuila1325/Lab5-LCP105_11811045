@@ -95,6 +95,8 @@ public class Principal extends javax.swing.JFrame {
         Eliminar_Personaje = new javax.swing.JButton();
         jb_ModificarPersonaje = new javax.swing.JButton();
         popUp_Arbol = new javax.swing.JPopupMenu();
+        Crear_Lider = new javax.swing.JMenuItem();
+        Ver_datos = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
         EscuadronMenu = new javax.swing.JMenu();
         Crear_Squad = new javax.swing.JMenuItem();
@@ -466,6 +468,17 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(95, Short.MAX_VALUE))
         );
 
+        Crear_Lider.setText("jMenuItem1");
+        Crear_Lider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Crear_LiderMouseClicked(evt);
+            }
+        });
+        popUp_Arbol.add(Crear_Lider);
+
+        Ver_datos.setText("jMenuItem1");
+        popUp_Arbol.add(Ver_datos);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         EscuadronMenu.setText("ESCUADRONES");
@@ -568,101 +581,122 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_Listas_PersonajesActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        String nombre = tf_NombreEscuadron.getText();
-        String base = tf_BaseEscuadron.getText();
-        String tipo = "";
-        if (rb_HeroesEsc.isSelected()) {
-            tipo = "Heroe";
-        } else if (rb_VillanosEsc.isSelected()) {
-            tipo = "Villano";
-        }
-        Escuadron e = new Escuadron(nombre, base, tipo);
+        try {
+            String nombre = tf_NombreEscuadron.getText();
+            String base = tf_BaseEscuadron.getText();
+            String tipo = "";
+            if (rb_HeroesEsc.isSelected()) {
+                tipo = "Heroe";
+            } else if (rb_VillanosEsc.isSelected()) {
+                tipo = "Villano";
+            }
+            Escuadron e = new Escuadron(nombre, base, tipo);
 
-        String clasifificacion = e.getTipo();
-        if (clasifificacion.equals("Heroe")) {
-            DefaultComboBoxModel cb = (DefaultComboBoxModel) cb_Squadsheroes.getModel();
-            cb.addElement(e);
-            cb_Squadsheroes.setModel(cb);
-        } else if (clasifificacion.equals("Villano")) {
-            DefaultComboBoxModel cb = (DefaultComboBoxModel) cb_SquadsVillanos.getModel();
-            cb.addElement(e);
-            cb_SquadsVillanos.setModel(cb);
-        }
+            String clasifificacion = e.getTipo();
+            if (clasifificacion.equals("Heroe")) {
+                DefaultComboBoxModel cb = (DefaultComboBoxModel) cb_Squadsheroes.getModel();
+                cb.addElement(e);
+                cb_Squadsheroes.setModel(cb);
+            } else if (clasifificacion.equals("Villano")) {
+                DefaultComboBoxModel cb = (DefaultComboBoxModel) cb_SquadsVillanos.getModel();
+                cb.addElement(e);
+                cb_SquadsVillanos.setModel(cb);
+            }
 
-        DefaultListModel m = (DefaultListModel) jl_Squads.getModel();
-        m.addElement(e);
-        jl_Squads.setModel(m);
-        tf_BaseEscuadron.setText("");
-        tf_NombreEscuadron.setText("");
-
-        DefaultTreeModel modelo = (DefaultTreeModel) jt_Arbol.getModel();
-        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
-
-        DefaultMutableTreeNode n = new DefaultMutableTreeNode(e.getNombre());
-
-        raiz.add(n);
-        modelo.reload();
-    }//GEN-LAST:event_jButton1MouseClicked
-
-    private void jb_crearPersonajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearPersonajeMouseClicked
-        String nombre = tf_nombrePersonaje.getText();
-        String poder = tf_poderpersonaje.getText();
-        String debilidad = tf_DebilidadPersonaje.getText();
-        String tipo = "";
-        if (rb_HeroePersonaje.isSelected()) {
-            tipo = "Heroe";
-            cb_SquadsVillanos.setEnabled(false);
-        } else if (rb_VillanoPersonaje.isSelected()) {
-            tipo = "Villano";
-            cb_Squadsheroes.setEnabled(false);
-        }
-        int fuerza = Integer.parseInt(tf_fuerzaPesonaje.getText());
-        int mental = Integer.parseInt(tf_MentalPersonaje.getText());
-        int fisico = Integer.parseInt(tf_FisicaPersonaje.getText());
-        int aux = fuerza + mental + fisico;
-        if (aux != 100) {
-            JOptionPane.showMessageDialog(this, "NO AJUSTA ESTE VALOR PARA SER HEROE", "VALOR INCORRECTO", JOptionPane.ERROR_MESSAGE);
-
-        } else {
-            Escuadron squad = (Escuadron) cb_Squadsheroes.getSelectedItem();
-
-            Personaje p = new Personaje(nombre, poder, debilidad, squad, fuerza, fisico, mental);
-            ((Escuadron) squad).getMiembros().add(p);
+            DefaultListModel m = (DefaultListModel) jl_Squads.getModel();
+            m.addElement(e);
+            jl_Squads.setModel(m);
+            tf_BaseEscuadron.setText("");
+            tf_NombreEscuadron.setText("");
+            JOptionPane.showMessageDialog(this, "Se ha creado con exito");
 
             DefaultTreeModel modelo = (DefaultTreeModel) jt_Arbol.getModel();
             DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
 
-            String escuadron = squad.getNombre();
+            DefaultMutableTreeNode n = new DefaultMutableTreeNode(e.getNombre());
 
-            for (int i = 0; i < raiz.getChildCount(); i++) {
-                if (raiz.getChildAt(i).toString().equals(escuadron)) {
-                    DefaultMutableTreeNode f = new DefaultMutableTreeNode(p);
-                    ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(f);
-                }
-            }
-
-            if (tipo.equals("Heroe")) {
-                DefaultListModel th = (DefaultListModel) jl_Heroes.getModel();
-                th.addElement(p);
-                jl_Heroes.setModel(th);
-                tf_DebilidadPersonaje.setText("");
-                tf_FisicaPersonaje.setText("");
-                tf_MentalPersonaje.setText("");
-                tf_fuerzaPesonaje.setText("");
-                tf_nombrePersonaje.setText("");
-                tf_poderpersonaje.setText("");
-            } else if (tipo.equals("Villano")) {
-                DefaultListModel tv = (DefaultListModel) jl_Villanos.getModel();
-                tv.addElement(p);
-                jl_Villanos.setModel(tv);
-                tf_DebilidadPersonaje.setText("");
-                tf_FisicaPersonaje.setText("");
-                tf_MentalPersonaje.setText("");
-                tf_fuerzaPesonaje.setText("");
-                tf_nombrePersonaje.setText("");
-                tf_poderpersonaje.setText("");
-            }
+            raiz.add(n);
+            modelo.reload();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Valide los datos");
         }
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jb_crearPersonajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearPersonajeMouseClicked
+        try {
+            String nombre = tf_nombrePersonaje.getText();
+            String poder = tf_poderpersonaje.getText();
+            String debilidad = tf_DebilidadPersonaje.getText();
+            String tipo = "";
+            if (rb_HeroePersonaje.isSelected()) {
+                tipo = "Heroe";
+                cb_SquadsVillanos.setEnabled(false);
+            } else if (rb_VillanoPersonaje.isSelected()) {
+                tipo = "Villano";
+                cb_Squadsheroes.setEnabled(false);
+            }
+            int fuerza = Integer.parseInt(tf_fuerzaPesonaje.getText());
+            int mental = Integer.parseInt(tf_MentalPersonaje.getText());
+            int fisico = Integer.parseInt(tf_FisicaPersonaje.getText());
+            int aux = fuerza + mental + fisico;
+            if (aux != 100) {
+                JOptionPane.showMessageDialog(this, "NO AJUSTA ESTE VALOR PARA SER HEROE", "VALOR INCORRECTO", JOptionPane.ERROR_MESSAGE);
+
+            } else {
+                Escuadron squad = new Escuadron();
+                if (tipo.equals("Heroe")) {
+                    squad = (Escuadron) cb_Squadsheroes.getSelectedItem();
+                } else if (tipo.equals("Villano")) {
+                    squad = (Escuadron) cb_SquadsVillanos.getSelectedItem();
+                }
+
+                Personaje p = new Personaje(nombre, poder, debilidad, squad, fuerza, fisico, mental, tipo);
+                JOptionPane.showMessageDialog(this, "Se ha creado con exito");
+                ((Escuadron) squad).getMiembros().add(p);
+
+                DefaultTreeModel modelo = (DefaultTreeModel) jt_Arbol.getModel();
+                DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
+
+                String escuadron = squad.getNombre();
+
+                for (int i = 0; i < raiz.getChildCount(); i++) {
+                    if (raiz.getChildAt(i).toString().equals(escuadron)) {
+                        DefaultMutableTreeNode f = new DefaultMutableTreeNode(p);
+                        ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(f);
+                    }
+                }
+                modelo.reload();
+
+                if (tipo.equals("Heroe")) {
+                    DefaultListModel th = (DefaultListModel) jl_Heroes.getModel();
+                    th.addElement(p);
+                    jl_Heroes.setModel(th);
+                    tf_DebilidadPersonaje.setText("");
+                    tf_FisicaPersonaje.setText("");
+                    tf_MentalPersonaje.setText("");
+                    tf_fuerzaPesonaje.setText("");
+                    tf_nombrePersonaje.setText("");
+                    tf_poderpersonaje.setText("");
+                } else if (tipo.equals("Villano")) {
+                    DefaultListModel tv = (DefaultListModel) jl_Villanos.getModel();
+                    tv.addElement(p);
+                    jl_Villanos.setModel(tv);
+                    tf_DebilidadPersonaje.setText("");
+                    tf_FisicaPersonaje.setText("");
+                    tf_MentalPersonaje.setText("");
+                    tf_fuerzaPesonaje.setText("");
+                    tf_nombrePersonaje.setText("");
+                    tf_poderpersonaje.setText("");
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Valide los datos");
+        }
+
+
     }//GEN-LAST:event_jb_crearPersonajeMouseClicked
 
     private void EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarMouseClicked
@@ -701,27 +735,32 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_rb_VillanoPersonajeItemStateChanged
 
     private void jb_ModificarPersonajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_ModificarPersonajeMouseClicked
-        if (jl_Heroes.getSelectedIndex() >= 0) {
-            String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre: ");
-            String poder = JOptionPane.showInputDialog(this, "Ingrese el poder: ");
-            String debilidad = JOptionPane.showInputDialog(this, "Ingrese la debilidad: ");
-            int fuerza = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la fuerza: "));
-            int Fisica = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la agilidad fisica: "));
-            int Mental = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la agilidad mental: "));
+        try {
+            if (jl_Heroes.getSelectedIndex() >= 0) {
+                String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre: ");
+                String poder = JOptionPane.showInputDialog(this, "Ingrese el poder: ");
+                String debilidad = JOptionPane.showInputDialog(this, "Ingrese la debilidad: ");
+                int fuerza = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la fuerza: "));
+                int Fisica = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la agilidad fisica: "));
+                int Mental = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la agilidad mental: "));
 
-            while (fuerza + Fisica + Mental != 100) {
-                fuerza = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la fuerza: "));
-                Fisica = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la agilidad fisica: "));
-                Mental = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la agilidad mental: "));
+                while (fuerza + Fisica + Mental != 100) {
+                    fuerza = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la fuerza: "));
+                    Fisica = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la agilidad fisica: "));
+                    Mental = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la agilidad mental: "));
+                }
+
+                Personaje p = new Personaje(nombre, poder, debilidad, fuerza, Fisica, Mental);
+                jl_Heroes.setModel(new DefaultListModel());
+                DefaultListModel modelo = (DefaultListModel) jl_Heroes.getModel();
+
+                modelo.addElement(p);
+                modelo.removeElementAt(jl_Heroes.getSelectedIndex());
+                jl_Heroes.setModel(modelo);
             }
-
-            Personaje p = new Personaje(nombre, poder, debilidad, fuerza, Fisica, Mental);
-            jl_Heroes.setModel(new DefaultListModel());
-            DefaultListModel modelo = (DefaultListModel) jl_Heroes.getModel();
-
-            modelo.addElement(p);
-            modelo.removeElementAt(jl_Heroes.getSelectedIndex());
-            jl_Heroes.setModel(modelo);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Valide los datos");
         }
 
     }//GEN-LAST:event_jb_ModificarPersonajeMouseClicked
@@ -731,14 +770,28 @@ public class Principal extends javax.swing.JFrame {
             int row = jt_Arbol.getClosestRowForLocation(evt.getX(), evt.getY());
             jt_Arbol.setSelectionRow(row);
             Object v1 = jt_Arbol.getSelectionPath().getLastPathComponent();
-            Personaje personaje_seleccionada = new Personaje ();
-            DefaultMutableTreeNode nodo_seleccionado = (DefaultMutableTreeNode) v1;
-            if (nodo_seleccionado.getUserObject() instanceof Personaje) {
-                personaje_seleccionada= (Personaje) nodo_seleccionado.getUserObject();
-                popUp_Arbol.show(evt.getComponent(),evt.getX(), evt.getY());
+            Personaje personaje_seleccionada = new Personaje();
+            DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) v1;
+            if (nodo.getUserObject() instanceof Personaje) {
+                personaje_seleccionada = (Personaje) nodo.getUserObject();
+                popUp_Arbol.show(evt.getComponent(), evt.getX(), evt.getY());
             }
         }
     }//GEN-LAST:event_jt_ArbolMouseClicked
+
+    private void Crear_LiderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Crear_LiderMouseClicked
+        int row = jt_Arbol.getClosestRowForLocation(evt.getX(), evt.getY());
+        jt_Arbol.setSelectionRow(row);
+        Object v1 = jt_Arbol.getSelectionPath().getLastPathComponent();
+        Personaje personaje = new Personaje();
+        Escuadron squad = new Escuadron();
+        DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) v1;
+        if (nodo.getUserObject() instanceof Personaje) {
+            personaje = (Personaje) nodo.getUserObject();
+            squad = (Escuadron) nodo.getParent();
+            squad.setLider(personaje);
+        }
+    }//GEN-LAST:event_Crear_LiderMouseClicked
 
     /**
      * @param args the command line arguments
@@ -777,6 +830,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Arbol_Squads;
+    private javax.swing.JMenuItem Crear_Lider;
     private javax.swing.JMenuItem Crear_Personaje;
     private javax.swing.JMenuItem Crear_Squad;
     private javax.swing.JButton Eliminar;
@@ -787,6 +841,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton Modificar;
     private javax.swing.JMenu PersonajesMenu;
     private javax.swing.ButtonGroup TipoSquad;
+    private javax.swing.JMenuItem Ver_datos;
     private javax.swing.JComboBox<String> cb_SquadsVillanos;
     private javax.swing.JComboBox<String> cb_Squadsheroes;
     private javax.swing.JDialog escuadrones;
@@ -836,4 +891,5 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_poderpersonaje;
     private javax.swing.ButtonGroup tipo_personaje;
     // End of variables declaration//GEN-END:variables
+
 }
