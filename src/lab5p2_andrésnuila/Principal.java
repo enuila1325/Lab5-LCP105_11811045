@@ -94,7 +94,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         Eliminar_Personaje = new javax.swing.JButton();
         jb_ModificarPersonaje = new javax.swing.JButton();
-        jPopupMenu1 = new javax.swing.JPopupMenu();
+        popUp_Arbol = new javax.swing.JPopupMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         EscuadronMenu = new javax.swing.JMenu();
         Crear_Squad = new javax.swing.JMenuItem();
@@ -320,6 +320,11 @@ public class Principal extends javax.swing.JFrame {
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Escuadrones");
         jt_Arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jt_Arbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_ArbolMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(jt_Arbol);
 
         javax.swing.GroupLayout jd_arbolLayout = new javax.swing.GroupLayout(jd_arbol.getContentPane());
@@ -718,8 +723,22 @@ public class Principal extends javax.swing.JFrame {
             modelo.removeElementAt(jl_Heroes.getSelectedIndex());
             jl_Heroes.setModel(modelo);
         }
-        
+
     }//GEN-LAST:event_jb_ModificarPersonajeMouseClicked
+
+    private void jt_ArbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_ArbolMouseClicked
+        if (evt.isMetaDown()) {
+            int row = jt_Arbol.getClosestRowForLocation(evt.getX(), evt.getY());
+            jt_Arbol.setSelectionRow(row);
+            Object v1 = jt_Arbol.getSelectionPath().getLastPathComponent();
+            Personaje personaje_seleccionada = new Personaje ();
+            DefaultMutableTreeNode nodo_seleccionado = (DefaultMutableTreeNode) v1;
+            if (nodo_seleccionado.getUserObject() instanceof Personaje) {
+                personaje_seleccionada= (Personaje) nodo_seleccionado.getUserObject();
+                popUp_Arbol.show(evt.getComponent(),evt.getX(), evt.getY());
+            }
+        }
+    }//GEN-LAST:event_jt_ArbolMouseClicked
 
     /**
      * @param args the command line arguments
@@ -788,7 +807,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -803,6 +821,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JList<String> jl_Villanos;
     private javax.swing.JTree jt_Arbol;
     private javax.swing.JDialog personajes;
+    private javax.swing.JPopupMenu popUp_Arbol;
     private javax.swing.JRadioButton rb_HeroePersonaje;
     private javax.swing.JRadioButton rb_HeroesEsc;
     private javax.swing.JRadioButton rb_VillanoPersonaje;
