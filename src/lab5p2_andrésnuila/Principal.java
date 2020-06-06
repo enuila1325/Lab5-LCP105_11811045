@@ -93,6 +93,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         Eliminar_Personaje = new javax.swing.JButton();
+        jb_ModificarPersonaje = new javax.swing.JButton();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         EscuadronMenu = new javax.swing.JMenu();
@@ -127,9 +128,21 @@ public class Principal extends javax.swing.JFrame {
 
         tipo_personaje.add(rb_HeroePersonaje);
         rb_HeroePersonaje.setText("Heroe");
+        rb_HeroePersonaje.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rb_HeroePersonajeItemStateChanged(evt);
+            }
+        });
 
         tipo_personaje.add(rb_VillanoPersonaje);
         rb_VillanoPersonaje.setText("VIillano");
+        rb_VillanoPersonaje.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rb_VillanoPersonajeItemStateChanged(evt);
+            }
+        });
+
+        cb_Squadsheroes.setEnabled(false);
 
         tf_fuerzaPesonaje.setText("jTextField4");
 
@@ -143,6 +156,8 @@ public class Principal extends javax.swing.JFrame {
                 jb_crearPersonajeMouseClicked(evt);
             }
         });
+
+        cb_SquadsVillanos.setEnabled(false);
 
         javax.swing.GroupLayout personajesLayout = new javax.swing.GroupLayout(personajes.getContentPane());
         personajes.getContentPane().setLayout(personajesLayout);
@@ -400,27 +415,33 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jb_ModificarPersonaje.setText("Modificar");
+        jb_ModificarPersonaje.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_ModificarPersonajeMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jd_listasPersonajesLayout = new javax.swing.GroupLayout(jd_listasPersonajes.getContentPane());
         jd_listasPersonajes.getContentPane().setLayout(jd_listasPersonajesLayout);
         jd_listasPersonajesLayout.setHorizontalGroup(
             jd_listasPersonajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_listasPersonajesLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
-            .addGroup(jd_listasPersonajesLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel13)
+                .addGap(67, 67, 67))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_listasPersonajesLayout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(jd_listasPersonajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Eliminar_Personaje, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addGroup(jd_listasPersonajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jd_listasPersonajesLayout.createSequentialGroup()
-                        .addComponent(Eliminar_Personaje, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jd_listasPersonajesLayout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel13)
-                        .addGap(67, 67, 67))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_ModificarPersonaje, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59))
         );
         jd_listasPersonajesLayout.setVerticalGroup(
             jd_listasPersonajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,7 +455,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel12)
                     .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(76, 76, 76)
-                .addComponent(Eliminar_Personaje, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jd_listasPersonajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Eliminar_Personaje, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jb_ModificarPersonaje, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
 
@@ -569,7 +592,7 @@ public class Principal extends javax.swing.JFrame {
 
         DefaultTreeModel modelo = (DefaultTreeModel) jt_Arbol.getModel();
         DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
-        
+
         DefaultMutableTreeNode n = new DefaultMutableTreeNode(e.getNombre());
 
         raiz.add(n);
@@ -600,12 +623,12 @@ public class Principal extends javax.swing.JFrame {
 
             Personaje p = new Personaje(nombre, poder, debilidad, squad, fuerza, fisico, mental);
             ((Escuadron) squad).getMiembros().add(p);
-            
+
             DefaultTreeModel modelo = (DefaultTreeModel) jt_Arbol.getModel();
             DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
-            
+
             String escuadron = squad.getNombre();
-            
+
             for (int i = 0; i < raiz.getChildCount(); i++) {
                 if (raiz.getChildAt(i).toString().equals(escuadron)) {
                     DefaultMutableTreeNode f = new DefaultMutableTreeNode(p);
@@ -661,6 +684,42 @@ public class Principal extends javax.swing.JFrame {
             jl_Villanos.setModel(vmodelo);
         }
     }//GEN-LAST:event_Eliminar_PersonajeMouseClicked
+
+    private void rb_HeroePersonajeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rb_HeroePersonajeItemStateChanged
+        cb_Squadsheroes.setEnabled(true);
+        cb_SquadsVillanos.setEnabled(false);
+    }//GEN-LAST:event_rb_HeroePersonajeItemStateChanged
+
+    private void rb_VillanoPersonajeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rb_VillanoPersonajeItemStateChanged
+        cb_SquadsVillanos.setEnabled(true);
+        cb_Squadsheroes.setEnabled(false);
+    }//GEN-LAST:event_rb_VillanoPersonajeItemStateChanged
+
+    private void jb_ModificarPersonajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_ModificarPersonajeMouseClicked
+        if (jl_Heroes.getSelectedIndex() >= 0) {
+            String nombre = JOptionPane.showInputDialog(this, "Ingrese el nombre: ");
+            String poder = JOptionPane.showInputDialog(this, "Ingrese el poder: ");
+            String debilidad = JOptionPane.showInputDialog(this, "Ingrese la debilidad: ");
+            int fuerza = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la fuerza: "));
+            int Fisica = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la agilidad fisica: "));
+            int Mental = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la agilidad mental: "));
+
+            while (fuerza + Fisica + Mental != 100) {
+                fuerza = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la fuerza: "));
+                Fisica = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la agilidad fisica: "));
+                Mental = Integer.parseInt(JOptionPane.showInputDialog(this, "Ingrese la agilidad mental: "));
+            }
+
+            Personaje p = new Personaje(nombre, poder, debilidad, fuerza, Fisica, Mental);
+            jl_Heroes.setModel(new DefaultListModel());
+            DefaultListModel modelo = (DefaultListModel) jl_Heroes.getModel();
+
+            modelo.addElement(p);
+            modelo.removeElementAt(jl_Heroes.getSelectedIndex());
+            jl_Heroes.setModel(modelo);
+        }
+        
+    }//GEN-LAST:event_jb_ModificarPersonajeMouseClicked
 
     /**
      * @param args the command line arguments
@@ -734,6 +793,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JButton jb_ModificarPersonaje;
     private javax.swing.JButton jb_crearPersonaje;
     private javax.swing.JDialog jd_ListasSquads;
     private javax.swing.JDialog jd_arbol;
