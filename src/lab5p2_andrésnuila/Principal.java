@@ -9,6 +9,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -30,6 +32,7 @@ public class Principal extends javax.swing.JFrame {
         tf_fuerzaPesonaje.setText("");
         tf_nombrePersonaje.setText("");
         tf_poderpersonaje.setText("");
+
     }
 
     /**
@@ -55,11 +58,12 @@ public class Principal extends javax.swing.JFrame {
         tf_DebilidadPersonaje = new javax.swing.JTextField();
         rb_HeroePersonaje = new javax.swing.JRadioButton();
         rb_VillanoPersonaje = new javax.swing.JRadioButton();
-        cb_Squads = new javax.swing.JComboBox<>();
+        cb_Squadsheroes = new javax.swing.JComboBox<>();
         tf_fuerzaPesonaje = new javax.swing.JTextField();
         tf_FisicaPersonaje = new javax.swing.JTextField();
         tf_MentalPersonaje = new javax.swing.JTextField();
         jb_crearPersonaje = new javax.swing.JButton();
+        cb_SquadsVillanos = new javax.swing.JComboBox<>();
         escuadrones = new javax.swing.JDialog();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -73,12 +77,10 @@ public class Principal extends javax.swing.JFrame {
         tipo_personaje = new javax.swing.ButtonGroup();
         jd_arbol = new javax.swing.JDialog();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        jt_Arbol = new javax.swing.JTree();
         jd_ListasSquads = new javax.swing.JDialog();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jl_SquadsHeroes = new javax.swing.JList<>();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jl_SquadsVillanos = new javax.swing.JList<>();
+        jl_Squads = new javax.swing.JList<>();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         Eliminar = new javax.swing.JButton();
@@ -161,25 +163,32 @@ public class Principal extends javax.swing.JFrame {
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel8))
-                        .addGap(66, 66, 66)
                         .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(tf_nombrePersonaje, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                                .addComponent(tf_poderpersonaje)
-                                .addComponent(tf_DebilidadPersonaje))
                             .addGroup(personajesLayout.createSequentialGroup()
-                                .addComponent(rb_HeroePersonaje)
-                                .addGap(18, 18, 18)
-                                .addComponent(rb_VillanoPersonaje))
-                            .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(tf_MentalPersonaje, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                                .addComponent(tf_FisicaPersonaje, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(tf_fuerzaPesonaje, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cb_Squads, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(66, 66, 66)
+                                .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(tf_nombrePersonaje, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                                        .addComponent(tf_poderpersonaje)
+                                        .addComponent(tf_DebilidadPersonaje))
+                                    .addGroup(personajesLayout.createSequentialGroup()
+                                        .addComponent(rb_HeroePersonaje)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rb_VillanoPersonaje))
+                                    .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(tf_MentalPersonaje, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                                        .addComponent(tf_FisicaPersonaje, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(tf_fuerzaPesonaje, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(personajesLayout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(cb_Squadsheroes, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(cb_SquadsVillanos, 0, 145, Short.MAX_VALUE))))
                     .addGroup(personajesLayout.createSequentialGroup()
                         .addGap(144, 144, 144)
                         .addComponent(jb_crearPersonaje, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap())
         );
         personajesLayout.setVerticalGroup(
             personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,7 +213,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cb_Squads, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_Squadsheroes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_SquadsVillanos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(personajesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -294,8 +304,8 @@ public class Principal extends javax.swing.JFrame {
         );
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Escuadrones");
-        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        jScrollPane5.setViewportView(jTree1);
+        jt_Arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane5.setViewportView(jt_Arbol);
 
         javax.swing.GroupLayout jd_arbolLayout = new javax.swing.GroupLayout(jd_arbol.getContentPane());
         jd_arbol.getContentPane().setLayout(jd_arbolLayout);
@@ -314,11 +324,8 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(176, Short.MAX_VALUE))
         );
 
-        jl_SquadsHeroes.setModel(new DefaultListModel());
-        jScrollPane3.setViewportView(jl_SquadsHeroes);
-
-        jl_SquadsVillanos.setModel(new DefaultListModel());
-        jScrollPane4.setViewportView(jl_SquadsVillanos);
+        jl_Squads.setModel(new DefaultListModel());
+        jScrollPane3.setViewportView(jl_Squads);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel14.setText("Heroes");
@@ -341,32 +348,29 @@ public class Principal extends javax.swing.JFrame {
             jd_ListasSquadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_ListasSquadsLayout.createSequentialGroup()
                 .addGap(93, 93, 93)
-                .addComponent(jLabel14)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel15)
-                .addGap(78, 78, 78))
-            .addGroup(jd_ListasSquadsLayout.createSequentialGroup()
-                .addGroup(jd_ListasSquadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jd_ListasSquadsLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jd_ListasSquadsLayout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                 .addGroup(jd_ListasSquadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50))
+                    .addGroup(jd_ListasSquadsLayout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel15)
+                        .addGap(78, 78, 78))
+                    .addGroup(jd_ListasSquadsLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
+                        .addComponent(Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(88, 88, 88))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_ListasSquadsLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(200, 200, 200))
         );
         jd_ListasSquadsLayout.setVerticalGroup(
             jd_ListasSquadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jd_ListasSquadsLayout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addGroup(jd_ListasSquadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3))
-                .addGap(28, 28, 28)
+                .addGap(131, 131, 131)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jd_ListasSquadsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -545,23 +549,31 @@ public class Principal extends javax.swing.JFrame {
             tipo = "Villano";
         }
         Escuadron e = new Escuadron(nombre, base, tipo);
-        DefaultComboBoxModel cb = (DefaultComboBoxModel) cb_Squads.getModel();
-        cb.addElement(e);
-        cb_Squads.setModel(cb);
+
         String clasifificacion = e.getTipo();
         if (clasifificacion.equals("Heroe")) {
-            DefaultListModel mHeroes = (DefaultListModel) jl_SquadsHeroes.getModel();
-            mHeroes.addElement(e);
-            jl_SquadsHeroes.setModel(mHeroes);
-            tf_BaseEscuadron.setText("");
-            tf_NombreEscuadron.setText("");
+            DefaultComboBoxModel cb = (DefaultComboBoxModel) cb_Squadsheroes.getModel();
+            cb.addElement(e);
+            cb_Squadsheroes.setModel(cb);
         } else if (clasifificacion.equals("Villano")) {
-            DefaultListModel mVillanos = (DefaultListModel) jl_SquadsVillanos.getModel();
-            mVillanos.addElement(e);
-            jl_SquadsVillanos.setModel(mVillanos);
-            tf_BaseEscuadron.setText("");
-            tf_NombreEscuadron.setText("");
+            DefaultComboBoxModel cb = (DefaultComboBoxModel) cb_SquadsVillanos.getModel();
+            cb.addElement(e);
+            cb_SquadsVillanos.setModel(cb);
         }
+
+        DefaultListModel m = (DefaultListModel) jl_Squads.getModel();
+        m.addElement(e);
+        jl_Squads.setModel(m);
+        tf_BaseEscuadron.setText("");
+        tf_NombreEscuadron.setText("");
+
+        DefaultTreeModel modelo = (DefaultTreeModel) jt_Arbol.getModel();
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
+        
+        DefaultMutableTreeNode n = new DefaultMutableTreeNode(e.getNombre());
+
+        raiz.add(n);
+        modelo.reload();
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jb_crearPersonajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_crearPersonajeMouseClicked
@@ -571,8 +583,10 @@ public class Principal extends javax.swing.JFrame {
         String tipo = "";
         if (rb_HeroePersonaje.isSelected()) {
             tipo = "Heroe";
+            cb_SquadsVillanos.setEnabled(false);
         } else if (rb_VillanoPersonaje.isSelected()) {
             tipo = "Villano";
+            cb_Squadsheroes.setEnabled(false);
         }
         int fuerza = Integer.parseInt(tf_fuerzaPesonaje.getText());
         int mental = Integer.parseInt(tf_MentalPersonaje.getText());
@@ -582,10 +596,22 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "NO AJUSTA ESTE VALOR PARA SER HEROE", "VALOR INCORRECTO", JOptionPane.ERROR_MESSAGE);
 
         } else {
-            Escuadron squad = (Escuadron) cb_Squads.getSelectedItem();
+            Escuadron squad = (Escuadron) cb_Squadsheroes.getSelectedItem();
 
             Personaje p = new Personaje(nombre, poder, debilidad, squad, fuerza, fisico, mental);
             ((Escuadron) squad).getMiembros().add(p);
+            
+            DefaultTreeModel modelo = (DefaultTreeModel) jt_Arbol.getModel();
+            DefaultMutableTreeNode raiz = (DefaultMutableTreeNode) modelo.getRoot();
+            
+            String escuadron = squad.getNombre();
+            
+            for (int i = 0; i < raiz.getChildCount(); i++) {
+                if (raiz.getChildAt(i).toString().equals(escuadron)) {
+                    DefaultMutableTreeNode f = new DefaultMutableTreeNode(p);
+                    ((DefaultMutableTreeNode) raiz.getChildAt(i)).add(f);
+                }
+            }
 
             if (tipo.equals("Heroe")) {
                 DefaultListModel th = (DefaultListModel) jl_Heroes.getModel();
@@ -612,30 +638,25 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jb_crearPersonajeMouseClicked
 
     private void EliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EliminarMouseClicked
-        if (jl_SquadsHeroes.getSelectedIndex()>=0) {
-            jl_SquadsHeroes.setModel(new DefaultListModel());
-            DefaultListModel Hmodelo = (DefaultListModel) jl_SquadsHeroes.getModel();
-            Hmodelo.removeElement(jl_SquadsHeroes.getSelectedIndex());
-            jl_SquadsHeroes.setModel(Hmodelo);
+        if (jl_Squads.getSelectedIndex() >= 0) {
+            jl_Squads.setModel(new DefaultListModel());
+            DefaultListModel Hmodelo = (DefaultListModel) jl_Squads.getModel();
+            Hmodelo.removeElement(jl_Squads.getSelectedIndex());
+            jl_Squads.setModel(Hmodelo);
         }
-        if (jl_SquadsVillanos.getSelectedIndex()>=0) {
-            jl_SquadsVillanos.setModel(new DefaultListModel());
-            DefaultListModel vmodelo = (DefaultListModel) jl_SquadsVillanos.getModel();
-            vmodelo.removeElement(jl_SquadsVillanos.getSelectedIndex());
-            jl_SquadsVillanos.setModel(vmodelo);
-        }
+
     }//GEN-LAST:event_EliminarMouseClicked
 
     private void Eliminar_PersonajeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Eliminar_PersonajeMouseClicked
-        if (jl_Heroes.getSelectedIndex()>=0) {
+        if (jl_Heroes.getSelectedIndex() >= 0) {
             jl_Heroes.setModel(new DefaultListModel());
-            DefaultListModel hmodelo = (DefaultListModel)jl_Heroes.getModel();
+            DefaultListModel hmodelo = (DefaultListModel) jl_Heroes.getModel();
             hmodelo.removeElement(jl_Heroes.getSelectedIndex());
             jl_Heroes.setModel(hmodelo);
         }
-        if (jl_Villanos.getSelectedIndex()>=0) {
+        if (jl_Villanos.getSelectedIndex() >= 0) {
             jl_Villanos.setModel(new DefaultListModel());
-            DefaultListModel vmodelo = (DefaultListModel)jl_Heroes.getModel();
+            DefaultListModel vmodelo = (DefaultListModel) jl_Heroes.getModel();
             vmodelo.removeElement(jl_Villanos.getSelectedIndex());
             jl_Villanos.setModel(vmodelo);
         }
@@ -688,7 +709,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton Modificar;
     private javax.swing.JMenu PersonajesMenu;
     private javax.swing.ButtonGroup TipoSquad;
-    private javax.swing.JComboBox<String> cb_Squads;
+    private javax.swing.JComboBox<String> cb_SquadsVillanos;
+    private javax.swing.JComboBox<String> cb_Squadsheroes;
     private javax.swing.JDialog escuadrones;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -711,17 +733,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTree jTree1;
     private javax.swing.JButton jb_crearPersonaje;
     private javax.swing.JDialog jd_ListasSquads;
     private javax.swing.JDialog jd_arbol;
     private javax.swing.JDialog jd_listasPersonajes;
     private javax.swing.JList<String> jl_Heroes;
-    private javax.swing.JList<String> jl_SquadsHeroes;
-    private javax.swing.JList<String> jl_SquadsVillanos;
+    private javax.swing.JList<String> jl_Squads;
     private javax.swing.JList<String> jl_Villanos;
+    private javax.swing.JTree jt_Arbol;
     private javax.swing.JDialog personajes;
     private javax.swing.JRadioButton rb_HeroePersonaje;
     private javax.swing.JRadioButton rb_HeroesEsc;
